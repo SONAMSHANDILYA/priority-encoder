@@ -1,0 +1,36 @@
+module tb_priority_encoder_8to3;
+
+  // Declare signals
+  reg [7:0] inputs;
+  wire [2:0] encoded_output;
+  
+  // Instantiate the priority_encoder_8to3 module
+  priority_encoder_8to3 dut(
+    .inputs(inputs),
+    .encoded_output(encoded_output)
+  );
+
+  // Stimulus
+  initial begin
+    $monitor("Input: %b, Encoded Output: %b", inputs, encoded_output);
+
+    // Test case 1: Highest priority input is 00000001
+    inputs = 8'b00000001;
+    #10;
+
+    // Test case 2: Highest priority input is 00100000
+    inputs = 8'b00100000;
+    #10;
+
+    // Test case 3: Highest priority input is 10000000
+    inputs = 8'b10000000;
+    #10;
+
+    // Add more test cases as needed
+    // ...
+
+    // End simulation
+    $finish;
+  end
+
+endmodule
